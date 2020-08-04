@@ -1,0 +1,24 @@
+{
+  "name": "github-mock-charles",
+  "version": "1.0.0",
+  "description": "Simple node api to emulate git's response. Just add any folder or file in public / *.",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucassaleszup/github-mock-charles.git"
+  },
+  "author": "Lucas Sales",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucassaleszup/github-mock-charles/issues"
+  },
+  "homepage": "https://github.com/lucassaleszup/github-mock-charles#readme"
+}

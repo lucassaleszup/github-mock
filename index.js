@@ -1,13 +1,6 @@
 const express = require("express")
 const fs = require("fs")
 
-const toBase64 = file => new Promise((resolve, reject) => {
-  const reader = new FileReader();
-  reader.readAsDataURL(file);
-  reader.onload = () => resolve(reader.result);
-  reader.onerror = error => reject(error);
-});
-
 const app = express();
 
 app.use(express.json());
