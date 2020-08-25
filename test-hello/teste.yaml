@@ -1,0 +1,90 @@
+---
+# Source: test-hello/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: test-hello
+    service: test-hello
+  name: test-hello
+  namespace: default
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+    
+  selector:
+    app: test-hello
+---
+# Source: test-hello/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: teste
+  namespace: default
+  labels:
+    app: test-hello
+    version: teste
+    circleId: 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-hello
+      version: teste
+      circleId: 
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: 'true' 
+      labels:
+        app: test-hello
+        version: teste
+        circleId: 
+    spec:
+      serviceAccountName: default
+      containers:
+        - name: test-hello
+          image: "http://teste:5000/teste"
+          
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 80
+              scheme: HTTP
+            initialDelaySeconds: 30
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 1
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 80
+              scheme: HTTP
+            initialDelaySeconds: 30
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 1
+          
+          imagePullPolicy: 
+          
+          env:
+          
+          
+                    
+          resources:
+            limits:
+              cpu: 128m
+              memory: 128Mi
+            requests:
+              cpu: 128m
+              memory: 128Mi
+     
+     
+     
+     
+      imagePullSecrets:
+      - name: example-registry

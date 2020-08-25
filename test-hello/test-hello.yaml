@@ -2,6 +2,9 @@ replicaCount: 1
 image:
   tag: latest
   
+envVars:
+   - name: PORT
+     value: 80
 appname: test-hello
 
 service:
